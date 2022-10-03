@@ -1,20 +1,24 @@
+const INIT_MSG = "SW:";
+
 self.addEventListener('install', (event) => {
-    console.log("SW si funciona ");
+    console.log(INIT_MSG, "install");
+
     const promiseCache = caches.open('cache-v1.1').then((cache) => {
         return cache.addAll(
             [
-                './',
-                './index.html',
-                './porfolio/estantes.html',
-                './porfolio/sucursales.html',
-                './css/style.css',
-                './js/app.js',
+                '/',
+                '/index.html',
+                '/pages/estantes.html',
+                '/pages/sucursales.html',
+                '/css/style.css',
+                '/js/app.js',
+                '/js/fillData.js',
                 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js',
-                'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'
+                'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
+                'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css'
             ]
         );
     })
-    //espera hasta que termine
     event.waitUntil(promiseCache)
 })
 
