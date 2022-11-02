@@ -1,13 +1,3 @@
-.navbar>.container,
-.navbar>.container-fluid,
-.navbar>.container-lg,
-.navbar>.container-md,
-.navbar>.container-sm,
-.navbar>.container-xl,
-.navbar>.container-xxl {
-    justify-content: flex-start;
-}
-
 .badge {
     font-size: 0.875rem;
     font-weight: normal;

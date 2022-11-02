@@ -43,7 +43,6 @@ body {
 }
 
 .bg-full {
-    background-color: #91E78D;
     display: flex;
     flex-direction: column;
     height: 100vh;
