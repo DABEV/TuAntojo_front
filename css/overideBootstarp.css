@@ -13,3 +13,8 @@
     font-weight: normal;
     line-height: normal;
 }
+
+.form-control {
+    background-color: #F2F7FB;
+    border: 0;
+}
