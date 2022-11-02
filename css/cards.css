@@ -1,0 +1,30 @@
+.card-locale {
+    position: relative;
+    height: 80px;
+    width: 165px;
+    border-radius: 7%;
+    overflow: hidden;
+    padding: 10px;
+  }
+  
+  .card_image {
+    width: 40%;
+    margin: auto;
+    display: block;
+  }
+  
+  .card-locale_description{
+    margin-bottom: 10px;
+  }
+  
+  .card-locale_title{
+    font-family: "Poppins";
+    font-size: 10px;
+    font-weight: bold;
+    color: #000000 !important;
+  }
+  
+  .card-locale_content{
+    font-size: 10px;
+    color: #6C6C6C;
+  }
