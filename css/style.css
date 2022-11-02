@@ -56,3 +56,7 @@ body {
 .hover-color:hover{
     background-color: #d3d4d581;
 }
+
+.icon-space{
+    width: 30px;
+}
