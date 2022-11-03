@@ -25,7 +25,7 @@ body {
 }
 
 .item:nth-child(4n+3) .item-icon img {
-    background-color: #7ED7DF;
+    background-color: #91E78D;
     border-radius: 5px;
 }
 
