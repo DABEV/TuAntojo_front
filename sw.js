@@ -8,9 +8,10 @@ self.addEventListener('install', (event) => {
                 './porfolio/estantes.html',
                 './porfolio/sucursales.html',
                 './css/style.css',
+                './css/cards.css',
                 './js/app.js',
-                'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js',
-                'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'
+                'https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js',
+                'https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css'
             ]
         );
     })
