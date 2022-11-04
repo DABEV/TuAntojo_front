@@ -19,12 +19,12 @@
   
   .card-locale_title{
     font-family: "Poppins";
-    font-size: 10px;
+    font-size: calc(11px + (30 - 11) * ((100vw - 300px) / (1600 - 300)));
     font-weight: bold;
     color: #000000 !important;
   }
   
   .card-locale_content{
-    font-size: 10px;
+    font-size: calc(11px + (30 - 11) * ((100vw - 300px) / (1600 - 300)));
     color: #6C6C6C;
   }
