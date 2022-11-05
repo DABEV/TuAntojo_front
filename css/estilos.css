@@ -1,0 +1,125 @@
+.fondo{
+    font-family: system-ui;
+}
+.header{
+width: 100%;
+height: 150px;
+}
+.footer{
+width: 100%;
+height: 140px;
+position:absolute;
+left:0px;
+bottom:0px;
+}
+.title{
+color: #F996B6;
+font-family: system-ui;
+font-size: 36px;
+font-weight: 600;
+line-height: 45px;
+letter-spacing: 0em;
+text-align: center;
+}
+.titlelogin{
+    color: #F996B6;
+    font-family: system-ui;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 45px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 20px;
+}
+.inp{
+width: 75%;
+height: 50px;
+left: 12.5%;
+margin-bottom: 30px;
+margin-left: 12.5%;
+background: #F2F7FB;
+border-radius: 6px;
+border: transparent;
+color: #9CA1A5;
+padding-left: 5%;
+}
+.inplogin{
+    width: 75%;
+    height: 50px;
+    left: 12.5%;
+    margin-top: 40px;
+    margin-left: 12.5%;
+    background: #F2F7FB;
+    border-radius: 6px;
+    border: transparent;
+    color: #9CA1A5;
+    }
+
+.but{
+background: #F996B6;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+width: 75%;
+margin-top: 20px;
+margin-left: 12.5%;
+color: #FFFBFB;
+border: transparent;
+font-size: 32px;
+}
+.butlogin{
+    background: #F996B6;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 75%;
+    margin-top: 40px;
+    margin-left: 12.5%;
+    color: #FFFBFB;
+    border: transparent;
+    font-size: 32px;
+    }
+ @media (min-width: 800px) {
+    .header{
+        width: 100%;
+        height: 240px;
+        }
+        .footer{
+        width: 100%;
+        height: 200px;
+        position:absolute;
+        left:0px;
+        bottom:0px;
+        }
+ }
+ @media (max-width: 450px) {
+    .inplogin{
+        width: 75%;
+        height: 50px;
+        left: 12.5%;
+        margin-top: 50px;
+        background: #F2F7FB;
+        border-radius: 6px;
+        border: transparent;
+        color: #9CA1A5;
+        }
+        .titlelogin{
+            color: #F996B6;
+            font-family: system-ui;
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 45px;
+            letter-spacing: 0em;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .butlogin{
+            background: #F996B6;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            width: 75%;
+            margin-top: 60px;
+            margin-left: 12.5%;
+            color: #FFFBFB;
+            border: transparent;
+            font-size: 32px;
+            }
+ }
