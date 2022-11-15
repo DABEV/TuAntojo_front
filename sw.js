@@ -24,6 +24,8 @@ self.addEventListener("install", (event) => {
     return cache.addAll([
       `${INIT_BASE}`,
       `${INIT_BASE}index.html`,
+      `${INIT_BASE}login.html`,
+      `${INIT_BASE}registro.html`,
       `${INIT_BASE}css/cards.css`,
       `${INIT_BASE}css/colors.css`,
       `${INIT_BASE}css/overideBootstarp.css`,
@@ -40,11 +42,17 @@ self.addEventListener("install", (event) => {
       `${INIT_BASE}images/candy2.png`,
       `${INIT_BASE}images/candy3.png`,
       `${INIT_BASE}images/delivery.png`,
+      `${INIT_BASE}images/footer.png`,
+      `${INIT_BASE}images/head.png`,
+      `${INIT_BASE}images/headR.png`,
       `${INIT_BASE}images/person.png`,
       `${INIT_BASE}images/candy-group.png`,
       `${INIT_BASE}images/ticket.png`,
       `${INIT_BASE}images/puesto-de-comida.png`,
       `${INIT_BASE}js/app.js`,
+      `${INIT_BASE}js/auth-functions.js`,
+      `${INIT_BASE}js/products-functions.js`,
+      `${INIT_BASE}js/shelvess-functions.js`,
     ]);
   });
 
