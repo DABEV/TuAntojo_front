@@ -30,7 +30,7 @@ const login = () => {
         localStorage.clear();
         localStorage.setItem("token", token);
         console.log("Registro de token");
-        // window.location.href = "/porfolio/listaPedido.html"
+        window.location.href = "http://localhost:8080/porfolio/listaPedido.html"
       } else {
         console.log("No se inició sesión");
       }

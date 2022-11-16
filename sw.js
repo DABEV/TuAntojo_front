@@ -52,7 +52,9 @@ self.addEventListener("install", (event) => {
       `${INIT_BASE}js/app.js`,
       `${INIT_BASE}js/auth-functions.js`,
       `${INIT_BASE}js/products-functions.js`,
-      `${INIT_BASE}js/shelvess-functions.js`,
+      `${INIT_BASE}js/shelves-functions.js`,
+      `${INIT_BASE}js/orders-functions.js`,
+      `${INIT_BASE}js/stores-functions.js`,
     ]);
   });
 
