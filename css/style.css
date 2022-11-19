@@ -39,6 +39,13 @@ body {
   display: block;
 }
 
+.back-rounded-image {
+  background-color: rgb(63, 232, 238);
+  border-radius: 100%;
+  margin: 50px;
+  height: 35%;
+}
+
 .bg-full {
   display: flex;
   flex-direction: column;
