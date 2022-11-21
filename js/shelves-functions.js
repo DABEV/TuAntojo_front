@@ -1,4 +1,6 @@
 const BASE_URL = "http://localhost:8000/api/shelve";
+var tienda = 0;
+var nombre = "";
 
 const getAllShelves = () => {
   const itemList = document.getElementById("itemList");
@@ -27,7 +29,7 @@ const getAllShelves = () => {
             </div>
             </div>
             <div class="col-2 col-lg-1 d-flex align-items-center">
-            <button type="button" class="btn btn-icon">
+            <button type="button" class="btn btn-icon" data-bs-toggle="modal" data-bs-target="#comentsModal">
                 <i class='bx bx-message-dots ta-c-teal-1 fs-1'></i>
             </button>
             </div>
@@ -35,6 +37,12 @@ const getAllShelves = () => {
         `;
         card.addEventListener("click", () => {
           console.log(element.id);
+          tienda = element.id;
+          nombre = element.name;
+          const nombreEstablecimiento = document.getElementById("nombreEstablecimiento");
+          nombreEstablecimiento.innerHTML = `
+            <h4 class="navbar-brand fw-bold">Tienda: ${nombre}</h4>
+          `;
         });
         itemList.appendChild(card);
       });
