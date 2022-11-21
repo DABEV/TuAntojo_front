@@ -37,6 +37,7 @@ self.addEventListener("install", (event) => {
       `${INIT_BASE}porfolio/pedidosEntregados.html`,
       `${INIT_BASE}porfolio/productos.html`,
       `${INIT_BASE}porfolio/estantes.html`,
+      `${INIT_BASE}porfolio/comentarios.html`,
       `${INIT_BASE}images/icons/store.png`,
       `${INIT_BASE}images/candy1.png`,
       `${INIT_BASE}images/candy2.png`,
@@ -55,6 +56,7 @@ self.addEventListener("install", (event) => {
       `${INIT_BASE}js/shelves-functions.js`,
       `${INIT_BASE}js/orders-functions.js`,
       `${INIT_BASE}js/stores-functions.js`,
+      `${INIT_BASE}js/comments-functions.js`,
     ]);
   });
 
