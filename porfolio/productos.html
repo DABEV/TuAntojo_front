@@ -38,73 +38,9 @@
     </nav>
 
     <div class="container">
-      <div class="row mt-2">
-        <div class="col">
-          <button type="button" class="btn btn-sm ta-bg-teal-1 text-light">
-            Añadir producto
-          </button>
-        </div>
-        <div class="col text-end">
-          <p class="badge badge-custom rounded-pill ta-bg-lilac-1">Estante 1</p>
-        </div>
-      </div>
 
       <div class="list mt-4" id="itemList"></div>
 
-      <div
-        class="modal fade"
-        id="productsModal"
-        tabindex="-1"
-        aria-labelledby="productsModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-fullscreen-md-down">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="productModalLabel">
-                Pedir orden de producto
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body justify-content-center">
-                <div class="back-rounded-image item-icon d-flex justify-content-center">
-                    <img src="../images/candy1.png" class="img-fluid px-5 py-5">
-                </div>
-                
-                <h4 class="navbar-brand fw-bold">Agregar cantidad de productos</h4>
-                <div id="nombreProducto"></div>
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="cantidadProducto">
-                        <i class='bx bx-cart-add ta-c-pink-1 fs-1'></i>
-                    </label>
-                    <select class="form-select" id="cantidadProducto">
-                      <option selected>Seleccionar cantidad</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary text-light"
-                data-bs-dismiss="modal"
-              >
-                Cerrar
-              </button>
-              <button id="agregarOrden" type="button" class="btn ta-bg-pink-1 text-light">
-                Agregar orden
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <script

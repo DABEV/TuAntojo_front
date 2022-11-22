@@ -1,21 +1,22 @@
 const BASE_URL = "http://localhost:8000/api/comment";
+const ta_data_static_store_1 = "";
 
 
 const getAllComments = () => {
-    const itemList = document.getElementById("itemList");
-    itemList.innerHTML = "";
-    fetch(`${BASE_URL}/index`)
-        .then((response) => response.json())
-        .then((data) => {
-            const comments = data.data;
-            comments.forEach((element) => {
-                console.log(element);
-                const card = document.createElement("div");
-                card.classList.add("col-6");
-                card.classList.add("col-md-4");
-                card.classList.add("col-lg-3");
-                card.classList.add("item");
-                card.innerHTML = `
+  const itemList = document.getElementById("itemList");
+  itemList.innerHTML = "";
+  fetch(`${BASE_URL}/index`)
+    .then((response) => response.json())
+    .then((data) => {
+      const comments = data.data;
+      comments.forEach((element) => {
+        console.log(element);
+        const card = document.createElement("div");
+        card.classList.add("col-6");
+        card.classList.add("col-md-4");
+        card.classList.add("col-lg-3");
+        card.classList.add("item");
+        card.innerHTML = `
                   <div class="item-icon">
                     <img src="../images/icons/store.png" class="img-fluid px-5 py-3" alt="">
                   </div>
@@ -31,10 +32,11 @@ const getAllComments = () => {
                     <span class="card-locale_content">${element.photo}</span>
                   </div>
                 `;
-                card.addEventListener("click", () => {
-                    console.log(element.id);
-                });
-                itemList.appendChild(card);
-            });
+        card.addEventListener("click", () => {
+          console.log(element.id);
+
         });
+        itemList.appendChild(card);
+      });
+    });
 };

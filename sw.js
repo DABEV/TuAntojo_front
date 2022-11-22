@@ -37,7 +37,6 @@ self.addEventListener("install", (event) => {
       `${INIT_BASE}porfolio/pedidosEntregados.html`,
       `${INIT_BASE}porfolio/productos.html`,
       `${INIT_BASE}porfolio/estantes.html`,
-      `${INIT_BASE}porfolio/comentarios.html`,
       `${INIT_BASE}porfolio/listaTiendas.html`,
       `${INIT_BASE}images/icons/store.png`,
       `${INIT_BASE}images/candy1.png`,
