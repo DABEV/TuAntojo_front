@@ -42,7 +42,8 @@ const getAllStores = () => {
     `;
         card.addEventListener("click", () => {
           console.log(element.id);
-          let ta_data_static_store = localStorage.setItem("store_id", element.id);
+          localStorage.setItem("store_id", element.id);
+          window.location.href = "http://localhost:8080/porfolio/comentarios.html";
         });
         itemList.appendChild(card);
       });

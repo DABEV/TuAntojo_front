@@ -3,8 +3,8 @@ const BASE_URL = "http://localhost:8000/api/order";
 const getAllOrders = () => {
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
-  
-  fetch(`${BASE_URL}/index`)
+  const id = localStorage.getItem('user');
+  fetch(`${BASE_URL}/findByUser/${id}`)
     .then((response) => response.json())
     .then((data) => {
       const orders = data.data;
@@ -21,13 +21,14 @@ const getAllOrders = () => {
             </div>
             <div class="col d-flex align-items-center">
                 <div>
-                    <div class="fw-bold">Jiutepec, Morelos</div>
+                    <div class="fw-bold">${element.store.location}</div>
+                    <div class="">${element.product.name}</div>
                     <div class="row">
                         <div class="col text-end">
                             <b class="badge-custom rounded-pill ta-c-danger">${element.status}</b>
                         </div>
                         <div class="col">
-                             <span>$12</span>
+                             <span>${element.amount}</span>
                         </div>
 
                     </div>

@@ -91,6 +91,8 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  
+  /*
   const resp = caches.match(event.request).then((respCache) => {
     if (respCache) {
       return respCache;
@@ -103,5 +105,5 @@ self.addEventListener("fetch", (event) => {
       return respWeb.clone();
     });
   });
-  event.respondWith(resp);
+  event.respondWith(resp);*/
 });

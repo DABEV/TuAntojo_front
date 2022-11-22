@@ -3,14 +3,14 @@ const ta_data_static_store_1 = "";
 
 
 const getAllComments = () => {
+  const id = localStorage.getItem("store_id");
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
-  fetch(`${BASE_URL}/index`)
+  fetch(`${BASE_URL}/findById/${id}`)
     .then((response) => response.json())
     .then((data) => {
       const comments = data.data;
       comments.forEach((element) => {
-        console.log(element);
         const card = document.createElement("div");
         card.classList.add("col-6");
         card.classList.add("col-md-4");
@@ -34,7 +34,7 @@ const getAllComments = () => {
                 `;
         card.addEventListener("click", () => {
           console.log(element.id);
-
+          console.log(element)
         });
         itemList.appendChild(card);
       });
@@ -52,6 +52,8 @@ const addComment = () => {
   comment.photo = "esto será una foto";
   comment.store_id = localStorage.getItem('store_id');
   comment.user_id = localStorage.getItem('user');
+
+
   fetch(`${BASE_URL}/store`, {
     method: "POST",
     headers: {
@@ -66,11 +68,11 @@ const addComment = () => {
       const comment = data.data;
       if (comment) {
         swal({
-          title: "se registro",
+          title: "se registró",
           text: "You clicked the button!",
           icon: "success",
         });
-
+        getAllComments();
       } else {
         swal({
           title: "no se registro",
