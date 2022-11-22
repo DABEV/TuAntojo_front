@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:8000/api/product";
 var producto = 0;
 var nombre = "";
-
+/*
 function setProductOrder(storeId, productId){
   console.log(storeId+""+productId);
   const productOrder = {
@@ -29,7 +29,7 @@ function setProductOrder(storeId, productId){
     console.log(e);
   });
 }
-
+*/
 const getAllProducts = () => {
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
@@ -57,27 +57,22 @@ const getAllProducts = () => {
                 </div>
             </div>
             <div class="col-2 col-lg-1 d-flex align-items-center">
-                <button type="button" class="btn btn-icon">
+                <a href="http://localhost:8080/porfolio/nuevoPedido.html"  class="btn btn-icon">
                     <i class='bx bx-cart-add ta-c-pink-1 fs-1'></i>
-                </button>
+                </a>
             </div>
         </div>
         `;
         card.addEventListener("click", () => {
           console.log(element.id);
-          producto = element.id;
-          nombre = element.name;
-          const nombreProducto = document.getElementById("nombreProducto");
-          nombreProducto.innerHTML = `
-            <h4 class="navbar-brand fw-bold">Producto: ${nombre}</h4>
-          `;
+          let ta_data_static_product = localStorage.setItem("product_id", element.id);
         });
         itemList.appendChild(card);
       });
     });
 };
-
+/*
 const btnAgregar = document.getElementById("agregarOrden");
 if(btnAgregar){
   btnAgregar.addEventListener("click", setProductOrder(1,producto));
-}
+}*/
