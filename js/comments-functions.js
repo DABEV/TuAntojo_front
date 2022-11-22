@@ -40,3 +40,46 @@ const getAllComments = () => {
       });
     });
 };
+const addComment = () => {
+  const comment = {
+    description: "",
+    photo: "",
+    store_id: "",
+    user_id: "",
+  };
+  const comentario = document.getElementById("comentario");
+  comment.description = comentario.value;
+  comment.photo = "esto será una foto";
+  comment.store_id = localStorage.getItem('store_id');
+  comment.user_id = localStorage.getItem('user');
+  fetch(`${BASE_URL}/store`, {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(comment),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.data);
+      const comment = data.data;
+      if (comment) {
+        swal({
+          title: "se registro",
+          text: "You clicked the button!",
+          icon: "success",
+        });
+
+      } else {
+        swal({
+          title: "no se registro",
+          text: "You clicked the button!",
+          icon: "error",
+        });
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
