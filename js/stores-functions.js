@@ -5,7 +5,8 @@ var nombre = "";
 const getAllStores = () => {
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
-  fetch(`${BASE_URL}/index`)
+  const id = localStorage.getItem('user');
+  fetch(`${BASE_URL}/findByUser/${id}`)
     .then((response) => response.json())
     .then((data) => {
       const shelves = data.data;
