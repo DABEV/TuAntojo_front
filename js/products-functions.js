@@ -65,12 +65,7 @@ const getAllProducts = () => {
         `;
         card.addEventListener("click", () => {
           console.log(element.id);
-          producto = element.id;
-          nombre = element.name;
-          const nombreProducto = document.getElementById("nombreProducto");
-          nombreProducto.innerHTML = `
-            <h4 class="navbar-brand fw-bold">Producto: ${nombre}</h4>
-          `;
+          let ta_data_static_product = localStorage.setItem("product_id", element.id);
         });
         itemList.appendChild(card);
       });

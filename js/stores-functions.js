@@ -42,7 +42,7 @@ const getAllStores = () => {
     `;
         card.addEventListener("click", () => {
           console.log(element.id);
-          window.location.href = ""
+          let ta_data_static_store = localStorage.setItem("store_id", element.id);
         });
         itemList.appendChild(card);
       });

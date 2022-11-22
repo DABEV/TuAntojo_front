@@ -47,3 +47,50 @@ const getAllOrders = () => {
       });
     });
 };
+
+const addOrder = () => {
+    
+    const order = {
+        amount: "",
+        status: "",
+        product_id: "",
+        store_id: "",
+        user_id: "",
+      };
+    const cant = document.getElementById("numUnidades");
+    order.amount = cant.value;
+    order.status = 0;
+    order.store_id = localStorage.getItem('store_id');
+    order.product_id = localStorage.getItem('product_id');
+    order.user_id = localStorage.getItem('user');
+    fetch(`${BASE_URL}/store`, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const order = data.data;
+          if (order) {
+            swal({
+                title: "se registro",
+                text: "You clicked the button!",
+                icon: "success",
+              });
+            
+          } else {
+            swal({
+                title: "no se registro",
+                text: "You clicked the button!",
+                icon: "error",
+              });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    };
+    

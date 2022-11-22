@@ -26,9 +26,11 @@ const login = () => {
     .then((data) => {
       console.log(data);
       const token = data.token;
+      const user = data.data;
       if (token) {
         localStorage.clear();
         localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user.id))
         console.log("Registro de token");
         window.location.href =
           "http://localhost:8080/porfolio/listaPedido.html";
