@@ -21,8 +21,8 @@ const getAllOrders = () => {
             </div>
             <div class="col d-flex align-items-center">
                 <div>
-                    <div class="fw-bold">${element.store.location}</div>
-                    <div class="">${element.product.name}</div>
+                    <div class="fw-bold">${element.store_id}</div>
+                    <div class="">${element.product_id}</div>
                     <div class="row">
                         <div class="col text-end">
                             <b class="badge-custom rounded-pill ta-c-danger">${element.status}</b>

@@ -32,6 +32,7 @@ self.addEventListener("install", (event) => {
       `${INIT_BASE}css/style.css`,
       `${INIT_BASE}porfolio/carrito.html`,
       `${INIT_BASE}porfolio/sucursales.html`,
+      `${INIT_BASE}porfolio/comentarios.html`,
       `${INIT_BASE}porfolio/listaPedido.html`,
       `${INIT_BASE}porfolio/nuevoPedido.html`,
       `${INIT_BASE}porfolio/pedidosEntregados.html`,

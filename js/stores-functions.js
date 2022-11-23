@@ -6,6 +6,7 @@ const getAllStores = () => {
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
   const id = localStorage.getItem('user');
+  console.log(id);
   fetch(`${BASE_URL}/findByUser/${id}`)
     .then((response) => response.json())
     .then((data) => {
