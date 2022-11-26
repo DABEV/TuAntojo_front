@@ -30,7 +30,21 @@ function setProductOrder(storeId, productId){
   });
 }
 */
+function isNotAuth() {
+  try{
+      var token = localStorage.getItem("token");
+      if(token != null){
+      }else{
+        window.location.href = "http://localhost:8080/login.html";
+        window.localStorage.clear();
+      }
+  }catch(e){
+      console.log(e);
+  }
+}
+
 const getAllProducts = () => {
+  isNotAuth();
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
   fetch(`${BASE_URL}/index`)

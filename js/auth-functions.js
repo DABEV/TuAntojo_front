@@ -1,6 +1,31 @@
 const BASE_URL = "http://localhost:8000/api";
 const localStorage = window.localStorage;
 
+function isNotAuth() {
+  try{
+      var token = localStorage.getItem("token");
+      if(token != null){
+      }else{
+        window.location.href = "http://localhost:8080/login.html"
+      }
+  }catch(e){
+      console.log(e);
+  }
+}
+
+function isAlreadyAuth() {
+  try{
+      var token = localStorage.getItem("token");
+      if(token != null){
+        window.location.href =
+          "http://localhost:8080/porfolio/listaPedido.html";
+      }else{
+      }
+  }catch(e){
+      console.log(e);
+  }
+}
+
 const login = () => {
   const user = {
     email: "",
@@ -97,3 +122,4 @@ const btnRegister = document.getElementById("btnRegister");
 if(btnRegister){
   btnRegister.addEventListener("click", register);
 }
+

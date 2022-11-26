@@ -2,7 +2,21 @@ const BASE_URL = "http://localhost:8000/api/store";
 var tienda = 0;
 var nombre = "";
 
+function isNotAuth() {
+  try{
+      var token = localStorage.getItem("token");
+      if(token != null){
+      }else{
+        window.location.href = "http://localhost:8080/login.html";
+        window.localStorage.clear();
+      }
+  }catch(e){
+      console.log(e);
+  }
+}
+
 const getAllStores = () => {
+  isNotAuth();
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
   const id = localStorage.getItem('user');
