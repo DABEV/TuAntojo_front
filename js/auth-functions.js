@@ -112,6 +112,25 @@ const register = () => {
     });
 };
 
+const logout = () => {
+  const token = localStorage.getItem("token");
+  fetch(`${BASE_URL}/logout`, {
+    method: "GET",
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    if(data){
+      localStorage.clear();
+    }else{
+      console.log("Cierre de sesión fallido");
+    }
+  })
+}
+
 const btnLogin = document.getElementById("btnLogin");
 if(btnLogin){
   btnLogin.addEventListener("click", login);
@@ -121,5 +140,10 @@ if(btnLogin){
 const btnRegister = document.getElementById("btnRegister");
 if(btnRegister){
   btnRegister.addEventListener("click", register);
+}
+
+const btnLogout = document.getElementById("btnLogout");
+if(btnLogout){
+  btnLogout.addEventListener("click", logout);
 }
 

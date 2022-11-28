@@ -14,7 +14,7 @@
     <link rel='stylesheet' href='../css/colors.css'>
 </head>
 
-<body class="bg-full ta-bg-teal-1">
+<body class="bg-full ta-bg-teal-1"  onload="getOneProduct()">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a type="button" class="btn btn-nav" href="productos.html">
@@ -38,9 +38,8 @@
         <h4 class="mt-4 text-center">Agregar al pedido</h4>
         <div class="row mt-4">
             <div class="col">
-                <div class="ta-bg-soft-blue-1 content">
-                    <strong>Sabritas clásicas 300g</strong>
-                    <div>Precio unitario: $12.50</div>
+                <div class="ta-bg-soft-blue-1 content" id="datosProducto">
+                    
                 </div>
             </div>
             <div class="col-3 col-lg-1">
@@ -50,7 +49,6 @@
         <form method="post">
             <input type="number" min="1" class="form-control mt-4" id="numUnidades" placeholder="Número de elementos">
             <hr class="ta-bg-soft-blue-1 my-4" />
-            <div class="fw-bold">Subtotal a pagar: $220.66</div>
             <div class="d-grid gap-2 mt-5">
                 <button class="btn ta-bg-pink-1 text-white hover-color" type="button" onclick="addOrder()" >Registrar Pedido</button>
             </div>

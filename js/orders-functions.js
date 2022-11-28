@@ -97,7 +97,7 @@ const addOrder = () => {
                 text: "You clicked the button!",
                 icon: "success",
               });
-            
+            window.location.href = "http://localhost:8080/porfolio/productos.html";
           } else {
             swal({
                 title: "no se registro",
@@ -110,4 +110,43 @@ const addOrder = () => {
           console.log(e);
         });
     };
+
+const getOneProduct = () =>{
+  const producto = localStorage.getItem('product_id');
+  fetch(`http://localhost:8000/api/product/show/${producto}`)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    const datos = document.getElementById("datosProducto");
+    datos.innerHTML = `
+    <strong>${data.data.name}</strong>
+    <div>Precio unitario: $${data.data.price}</div>
+    `
+  })
+}
+
+const logout = () => {
+  const token = localStorage.getItem("token");
+  fetch(`http://localhost:8000/api/logout`, {
+    method: "GET",
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    if(data){
+      localStorage.clear();
+      window.location.reload();
+    }else{
+      console.log("Cierre de sesión fallido");
+    }
+  })
+}
+
+const btnLogout = document.getElementById("btnLogout");
+if(btnLogout){
+  btnLogout.addEventListener("click", logout);
+}
     

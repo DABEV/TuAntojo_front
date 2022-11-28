@@ -66,6 +66,31 @@ const getAllStores = () => {
     });
 };
 
+const logout = () => {
+  const token = localStorage.getItem("token");
+  fetch(`http://localhost:8000/api/logout`, {
+    method: "GET",
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    if(data){
+      localStorage.clear();
+      window.location.reload();
+    }else{
+      console.log("Cierre de sesión fallido");
+    }
+  })
+}
+
+const btnLogout = document.getElementById("btnLogout");
+if(btnLogout){
+  btnLogout.addEventListener("click", logout);
+}
+
 /*
 
 const getAllStores = () => {
