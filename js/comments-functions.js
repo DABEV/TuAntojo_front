@@ -1,8 +1,21 @@
 const BASE_URL = "http://localhost:8000/api/comment";
 const ta_data_static_store_1 = "";
 
+function isNotAuth() {
+  try{
+      var token = localStorage.getItem("token");
+      if(token != null){
+      }else{
+        window.location.href = "http://localhost:8080/login.html";
+        window.localStorage.clear();
+      }
+  }catch(e){
+      console.log(e);
+  }
+}
 
 const getAllComments = () => {
+  isNotAuth();
   const id = localStorage.getItem("store_id");
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
