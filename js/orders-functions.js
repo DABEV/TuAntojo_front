@@ -1,15 +1,15 @@
 const BASE_URL = "http://localhost:8000/api/order";
-var precioProducto =0;
+var precioProducto = 0;
 function isNotAuth() {
-  try{
-      var token = localStorage.getItem("token");
-      if(token != null){
-      }else{
-        window.location.href = "http://localhost:8080/login.html";
-        window.localStorage.clear();
-      }
-  }catch(e){
-      console.log(e);
+  try {
+    var token = localStorage.getItem("token");
+    if (token != null) {
+    } else {
+      window.location.href = "http://localhost:8080/login.html";
+      window.localStorage.clear();
+    }
+  } catch (e) {
+    console.log(e);
   }
 }
 
@@ -24,9 +24,9 @@ const getOrdersPendings = () => {
     .then((response) => response.json())
     .then((data) => {
       const orders = data.data;
-      var estado =""
+      var estado = ""
       orders.forEach((element) => {
-        if (element.status == 0){
+        if (element.status == 0) {
           const card = document.createElement("div");
           card.classList.add("row");
           card.classList.add("item");
@@ -53,13 +53,65 @@ const getOrdersPendings = () => {
               </div>
               <div class="col-2 col-lg-1 d-flex align-items-center">
                   <button type="button" class="btn btn-icon">
-                      <i class='bx bx-check-circle ta-c-success'></i>
+                      <i class='bx bx-check-circle ta-c-success fs-1'></i>
                   </button>
               </div>
           </div>
           `;
           card.addEventListener("click", () => {
-            console.log(element.id);
+            const order = {
+              amount: element.amount,
+              payment: element.payment,
+              status: 1,
+              product_id: element.product_id,
+              store_id: element.store_id,
+              user_id: element.user_id
+            };
+
+            swal({
+              title: "Estás seguro?",
+              text: "El estado cambiará ha entregado",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+              .then((changeStatus) => {
+                if (changeStatus) {
+
+                  fetch(`${BASE_URL}/update/${element.id}`, {
+                    method: "PUT",
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(order),
+                  })
+                    .then((response) => response.json())
+                    .then((data) => {
+                      const order = data.data;
+                      if (order) {
+                        swal({
+                          title: "El producto ha sido entregado",
+                          icon: "success"
+                        })
+                        setTimeout(function () {
+                          window.location.replace("http://localhost:8080/porfolio/pedidosEntregados.html");
+                        }, 3000);
+                      } else {
+                        swal({
+                          title: "no se modifico",
+                          text: "You clicked the button!",
+                          icon: "error",
+                        });
+                      }
+                    })
+                    .catch((e) => {
+                      console.log(e);
+                    });
+                } else {
+                  
+                }
+              });
           });
           itemList.appendChild(card);
         }
@@ -68,7 +120,7 @@ const getOrdersPendings = () => {
 };
 
 const getOrdersdelivered = () => {
- console.log("entre");
+  console.log("entre");
   isNotAuth();
 
   const itemList = document.getElementById("itemList");
@@ -79,9 +131,9 @@ const getOrdersdelivered = () => {
     .then((data) => {
       const orders = data.data;
       console.log(data.data);
-      var estado =""
+      var estado = ""
       orders.forEach((element) => {
-        if (element.status == 1){
+        if (element.status == 1) {
           const card = document.createElement("div");
           card.classList.add("row");
           card.classList.add("item");
@@ -106,10 +158,9 @@ const getOrdersdelivered = () => {
                       </div>
                   </div>
               </div>
-              <div class="col-2 col-lg-1 d-flex align-items-center">
-                  <button type="button" class="btn btn-icon">
-                      <i class='bx bx-check-circle ta-c-success'></i>
-                  </button>
+             
+              <div class="col-2 col-lg-1 d-flex align-items-center"> 
+                  
               </div>
           </div>
           `;
@@ -122,66 +173,67 @@ const getOrdersdelivered = () => {
     });
 };
 
-const addOrder = () => {
-    
-    const order = {
-        amount: "",
-        status: "",
-        product_id: "",
-        store_id: "",
-        user_id: "",
-      };
-    const cant = document.getElementById("numUnidades");
-    order.amount = cant.value;
-    order.payment = cant.value * precioProducto;
-    order.status = 0;
-    order.store_id = localStorage.getItem('store_id');
-    order.product_id = localStorage.getItem('product_id');
-    order.user_id = localStorage.getItem('user');
-    fetch(`${BASE_URL}/store`, {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(order),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          const order = data.data;
-          if (order) {
-            swal({
-              title: "se registro tu orden",
-            })
-            setTimeout(function(){
-              window.location.replace("http://localhost:8080/porfolio/listapedido.html");
-          }, 2000); 
-          } else {
-            swal({
-                title: "no se registro",
-                text: "You clicked the button!",
-                icon: "error",
-              });
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    };
 
-const getOneProduct = () =>{
+const addOrder = () => {
+
+  const order = {
+    amount: "",
+    status: "",
+    product_id: "",
+    store_id: "",
+    user_id: "",
+  };
+  const cant = document.getElementById("numUnidades");
+  order.amount = cant.value;
+  order.payment = cant.value * precioProducto;
+  order.status = 0;
+  order.store_id = localStorage.getItem('store_id');
+  order.product_id = localStorage.getItem('product_id');
+  order.user_id = localStorage.getItem('user');
+  fetch(`${BASE_URL}/store`, {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(order),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const order = data.data;
+      if (order) {
+        swal({
+          title: "se registro tu orden",
+        })
+        setTimeout(function () {
+          window.location.replace("http://localhost:8080/porfolio/listapedido.html");
+        }, 2000);
+      } else {
+        swal({
+          title: "no se registro",
+          text: "You clicked the button!",
+          icon: "error",
+        });
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+const getOneProduct = () => {
   const producto = localStorage.getItem('product_id');
   fetch(`http://localhost:8000/api/product/show/${producto}`)
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-    precioProducto = data.data.price;
-    const datos = document.getElementById("datosProducto");
-    datos.innerHTML = `
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      precioProducto = data.data.price;
+      const datos = document.getElementById("datosProducto");
+      datos.innerHTML = `
     <strong>${data.data.name}</strong>
     <div>Precio unitario: $${data.data.price}</div>
     `
-  })
+    })
 }
 
 const logout = () => {
@@ -192,20 +244,19 @@ const logout = () => {
       "Authorization": "Bearer " + token
     }
   })
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-    if(data){
-      localStorage.clear();
-      window.location.reload();
-    }else{
-      console.log("Cierre de sesión fallido");
-    }
-  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data) {
+        localStorage.clear();
+        window.location.reload();
+      } else {
+        console.log("Cierre de sesión fallido");
+      }
+    })
 }
 
 const btnLogout = document.getElementById("btnLogout");
-if(btnLogout){
+if (btnLogout) {
   btnLogout.addEventListener("click", logout);
 }
-    
