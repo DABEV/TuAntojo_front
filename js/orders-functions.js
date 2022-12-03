@@ -14,17 +14,16 @@ function isNotAuth() {
 }
 
 const getOrdersPendings = () => {
-
   isNotAuth();
 
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
-  const id = localStorage.getItem('user');
+  const id = localStorage.getItem("user");
   fetch(`${BASE_URL}/findByUserId/${id}`)
     .then((response) => response.json())
     .then((data) => {
       const orders = data.data;
-      var estado = ""
+      var estado = "";
       orders.forEach((element) => {
         if (element.status == 0) {
           const card = document.createElement("div");
@@ -59,63 +58,61 @@ const getOrdersPendings = () => {
           </div>
           `;
           card.addEventListener("click", () => {
-            const order = {
-              amount: element.amount,
-              payment: element.payment,
-              status: 1,
-              product_id: element.product_id,
-              store_id: element.store_id,
-              user_id: element.user_id
-            };
-
             swal({
               title: "Estás seguro?",
               text: "El estado cambiará ha entregado",
               icon: "warning",
               buttons: true,
               dangerMode: true,
-            })
-              .then((changeStatus) => {
-                if (changeStatus) {
-
-                  fetch(`${BASE_URL}/update/${element.id}`, {
-                    method: "PUT",
-                    headers: {
-                      'Accept': 'application/json',
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(order),
-                  })
-                    .then((response) => response.json())
-                    .then((data) => {
-                      const order = data.data;
-                      if (order) {
-                        swal({
-                          title: "El producto ha sido entregado",
-                          icon: "success"
-                        })
-                        setTimeout(function () {
-                          window.location.replace("http://localhost:8080/porfolio/pedidosEntregados.html");
-                        }, 3000);
-                      } else {
-                        swal({
-                          title: "no se modifico",
-                          text: "You clicked the button!",
-                          icon: "error",
-                        });
-                      }
-                    })
-                    .catch((e) => {
-                      console.log(e);
-                    });
-                } else {
-                  
-                }
-              });
+            }).then((changeStatus) => {
+              if (changeStatus) {
+                const order = {
+                  amount: element.amount,
+                  payment: element.payment,
+                  status: 1,
+                  product_id: element.product_id,
+                  store_id: element.store_id,
+                  user_id: element.user_id,
+                };
+                updateStatus(order,element.id);
+              } else {
+              }
+            });
           });
           itemList.appendChild(card);
         }
       });
+    });
+};
+
+const updateStatus = (order,id) => {
+  fetch(`${BASE_URL}/update/${id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(order),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const order = data.data;
+      if (order) {
+        swal({
+          title: "El producto ha sido entregado",
+          icon: "success",
+        });
+        getOrdersPendings();
+      } else {
+        swal({
+          title: "Ha ocurrido un error",
+          text: "No se ha podido marcar el pedido como entregado",
+          icon: "error",
+        });
+      }
+    })
+    .catch((e) => {
+      console.log(e);
     });
 };
 
@@ -125,13 +122,13 @@ const getOrdersdelivered = () => {
 
   const itemList = document.getElementById("itemList");
   itemList.innerHTML = "";
-  const id = localStorage.getItem('user');
+  const id = localStorage.getItem("user");
   fetch(`${BASE_URL}/findByUserId/${id}`)
     .then((response) => response.json())
     .then((data) => {
       const orders = data.data;
       console.log(data.data);
-      var estado = ""
+      var estado = "";
       orders.forEach((element) => {
         if (element.status == 1) {
           const card = document.createElement("div");
@@ -149,7 +146,7 @@ const getOrdersdelivered = () => {
                       <div class="">${element.store.ubication}</div>
                       <div class="row">
                           <div class="col text-end">
-                              <b class="badge-custom rounded-pill ta-c-danger">Entregado</b>
+                              <b class="badge-custom rounded-pill ta-c-success">Entregado</b>
                           </div>
                           <div class="col">
                               <span>$${element.payment}</span>
@@ -173,9 +170,7 @@ const getOrdersdelivered = () => {
     });
 };
 
-
 const addOrder = () => {
-
   const order = {
     amount: "",
     status: "",
@@ -187,14 +182,14 @@ const addOrder = () => {
   order.amount = cant.value;
   order.payment = cant.value * precioProducto;
   order.status = 0;
-  order.store_id = localStorage.getItem('store_id');
-  order.product_id = localStorage.getItem('product_id');
-  order.user_id = localStorage.getItem('user');
+  order.store_id = localStorage.getItem("store_id");
+  order.product_id = localStorage.getItem("product_id");
+  order.user_id = localStorage.getItem("user");
   fetch(`${BASE_URL}/store`, {
     method: "POST",
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(order),
   })
@@ -204,9 +199,11 @@ const addOrder = () => {
       if (order) {
         swal({
           title: "se registro tu orden",
-        })
+        });
         setTimeout(function () {
-          window.location.replace("http://localhost:8080/porfolio/listapedido.html");
+          window.location.replace(
+            "http://localhost:8080/porfolio/listapedido.html"
+          );
         }, 2000);
       } else {
         swal({
@@ -222,7 +219,7 @@ const addOrder = () => {
 };
 
 const getOneProduct = () => {
-  const producto = localStorage.getItem('product_id');
+  const producto = localStorage.getItem("product_id");
   fetch(`http://localhost:8000/api/product/show/${producto}`)
     .then((response) => response.json())
     .then((data) => {
@@ -232,17 +229,17 @@ const getOneProduct = () => {
       datos.innerHTML = `
     <strong>${data.data.name}</strong>
     <div>Precio unitario: $${data.data.price}</div>
-    `
-    })
-}
+    `;
+    });
+};
 
 const logout = () => {
   const token = localStorage.getItem("token");
   fetch(`http://localhost:8000/api/logout`, {
     method: "GET",
     headers: {
-      "Authorization": "Bearer " + token
-    }
+      Authorization: "Bearer " + token,
+    },
   })
     .then((response) => response.json())
     .then((data) => {
@@ -253,8 +250,8 @@ const logout = () => {
       } else {
         console.log("Cierre de sesión fallido");
       }
-    })
-}
+    });
+};
 
 const btnLogout = document.getElementById("btnLogout");
 if (btnLogout) {
