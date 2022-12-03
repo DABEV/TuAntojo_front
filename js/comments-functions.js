@@ -32,7 +32,8 @@ const getAllComments = () => {
         card.classList.add("col-lg-3");
         card.classList.add("item");
         card.innerHTML = `
-                  <div class="item-icon">
+                  <div class="item-icon" data-bs-toggle="modal"
+                  data-bs-target="#dataModal">
                     <img src="${element.photo}" class="img-fluid px-1 py-1" alt="">
                   </div>
                   <div class="px-2 py-2">
@@ -44,12 +45,37 @@ const getAllComments = () => {
                         <span class="fw-bold text-dark card-locale_title">${element.created_at.substring(0,10)}</span>
                       </div>
                     </div>
-                    <span class="card-locale_content">
-                    ${element.description}
-                    </span>
+                    <div class="text-truncate">
+                      <span class="card-locale_content">
+                      ${element.description}
+                      </span>
+                    </div>
                   </div>
                 `;
         card.addEventListener("click", () => {
+          const dataModal = document.getElementById('fotografiaModal');
+          dataModal.innerHTML = `
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="comentsModalLabel">
+                Comentario
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body pt-md-0 pb-2 px-1 px-md-1">
+              <img src="${element.photo}" class="img-fluid px-1 py-1" alt="">
+              <div class="content mx-2 px-2">
+                <strong>Observación:</strong><br>
+                <span class="card-locale_content">
+                  ${element.description}
+                </span>
+              </div>
+            </div>
+          `;
           console.log(element.id);
           console.log(element);
         });
@@ -90,15 +116,16 @@ const addComment = async () => {
       const comment = data.data;
       if (comment) {
         swal({
-          title: "se registró",
-          text: "You clicked the button!",
+          title: "Éxito",
+          text: "Nuevo comentario agregado",
           icon: "success",
         });
+        comentario.value = "";
         getAllComments();
       } else {
         swal({
-          title: "no se registro",
-          text: "You clicked the button!",
+          title: "Error",
+          text: "No se pudo registrar el comentario",
           icon: "error",
         });
       }

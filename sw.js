@@ -94,8 +94,8 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  
   /*
+  
   const resp = caches.match(event.request).then((respCache) => {
     if (respCache) {
       return respCache;
@@ -107,6 +107,16 @@ self.addEventListener("fetch", (event) => {
       });
       return respWeb.clone();
     });
+  }).catch((err)=>{
+    if(event.request.headers.get('accept').includes('image/png')){
+      return caches.match('images/icons/store.png');
+    }
+    if(event.request.headers.get('accept').includes('image/jpg')){
+      return caches.match('images/icons/store.png');
+    }
+    if(event.request.headers.get('accept').includes('image/webp')){
+      return caches.match('images/icons/store.png');
+    }
   });
   event.respondWith(resp);*/
 });
