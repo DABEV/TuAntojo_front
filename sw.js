@@ -58,6 +58,8 @@ self.addEventListener("install", (event) => {
       `${INIT_BASE}js/orders-functions.js`,
       `${INIT_BASE}js/stores-functions.js`,
       `${INIT_BASE}js/comments-functions.js`,
+      `${INIT_BASE}js/firestore/Firestore.js`,
+      `${INIT_BASE}js/firestore/Firestore-functions.js`,
     ]);
   });
 
