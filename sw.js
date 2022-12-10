@@ -1,3 +1,6 @@
+importScripts('https://cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js');
+importScripts('/js/sw-db.js');
+
 const INIT_MSG = "SW:";
 const INIT_BASE = "/";
 
@@ -93,7 +96,34 @@ self.addEventListener("install", (event) => {
   event.waitUntil(prom);
 });
 
+
+self.addEventListener('sync', (event) => {
+  console.log('sw:sync');
+  if (event.tag === 'new-order') {
+    const resPromSync=sendPostOrders()
+    event.waitUntil(resPromSync)
+  }
+});
+
 self.addEventListener("fetch", (event) => {
+  console.log(event.request.clone().method);
+  if (event.request.clone().method === 'POST') {
+    const respuesta = fetch(event.request.clone())
+      .then((respWeb) => {
+        return respWeb;
+      }).catch(() => {
+        if (self.registration.sync) {
+          return event.request.json().then((body) => {
+            const respOffline = saveOrder(body)
+            return respOffline;
+          });
+        } else {
+          //crear response que no tiene sync
+          return null;
+        }
+      });
+    event.respondWith(respuesta);
+  }
   /*
   
   const resp = caches.match(event.request).then((respCache) => {
