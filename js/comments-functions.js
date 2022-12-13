@@ -34,7 +34,9 @@ const getAllComments = () => {
         card.innerHTML = `
                   <div class="item-icon" data-bs-toggle="modal"
                   data-bs-target="#dataModal">
-                    <img src="${element.photo}" class="img-fluid px-1 py-1" alt="">
+                    <img src="${
+                      element.photo
+                    }" class="img-fluid px-1 py-1" alt="">
                   </div>
                   <div class="px-2 py-2">
                     <div class="row">
@@ -42,7 +44,10 @@ const getAllComments = () => {
                         <i class="bx bxs-package ta-c-warn"></i>
                       </div>
                       <div class="col d-flex align-items-center">
-                        <span class="fw-bold text-dark card-locale_title">${element.created_at.substring(0,10)}</span>
+                        <span class="fw-bold text-dark card-locale_title">${element.created_at.substring(
+                          0,
+                          10
+                        )}</span>
                       </div>
                     </div>
                     <div class="text-truncate">
@@ -53,7 +58,7 @@ const getAllComments = () => {
                   </div>
                 `;
         card.addEventListener("click", () => {
-          const dataModal = document.getElementById('fotografiaModal');
+          const dataModal = document.getElementById("fotografiaModal");
           dataModal.innerHTML = `
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="comentsModalLabel">
@@ -87,52 +92,68 @@ const getAllComments = () => {
 const addComment = async () => {
   const comentario = document.getElementById("comentario");
   const image = document.getElementById("fotografia").files[0];
-  await saveImageFirestore(image).then((response) =>{
-    console.log(response);
-  });
-  const comment = {
-    description: "",
-    photo: "",
-    store_id: "",
-    user_id: "",
-  };
-  var commentUrl = localStorage.getItem("imgUrl");
-  console.log(commentUrl)
-  comment.description = comentario.value;
-  comment.photo = commentUrl;
-  comment.store_id = localStorage.getItem("store_id");
-  comment.user_id = localStorage.getItem("user");
-
-  fetch(`${BASE_URL}/store`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(comment),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const comment = data.data;
-      if (comment) {
-        swal({
-          title: "Éxito",
-          text: "Nuevo comentario agregado",
-          icon: "success",
-        });
-        comentario.value = "";
-        getAllComments();
-      } else {
-        swal({
-          title: "Error",
-          text: "No se pudo registrar el comentario",
-          icon: "error",
-        });
-      }
-    })
-    .catch((e) => {
-      console.log(e);
+  if (comentario.value == "" || image.name == null) {
+    swal({
+      title: "Advertencia",
+      text: "Favor de agregar todos los campos",
+      icon: "warning",
     });
+  } else {
+    await saveImageFirestore(image).then((response) => {
+      console.log(response);
+    });
+    const comment = {
+      description: "",
+      photo: "",
+      store_id: "",
+      user_id: "",
+    };
+    var commentUrl = localStorage.getItem("imgUrl");
+    console.log(commentUrl);
+    comment.description = comentario.value;
+    comment.photo = commentUrl;
+    comment.store_id = localStorage.getItem("store_id");
+    comment.user_id = localStorage.getItem("user");
+
+    fetch(`${BASE_URL}/store`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(comment),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const comment = data.data;
+        if (comment) {
+          swal({
+            title: "Éxito",
+            text: "Nuevo comentario agregado",
+            icon: "success",
+          });
+          comentario.value = "";
+          getAllComments();
+        } else {
+          swal({
+            title: "Error",
+            text: "No se pudo registrar el comentario",
+            icon: "error",
+          });
+        }
+        navigator.serviceWorker.removeEventListener('fetch', ()=>{
+          console.log("Se ha eliminado el registro");
+        })
+      })
+      .catch((e) => {
+        console.log(e);
+        swal({
+          title: "Información",
+          text: "Si estás fuera de línea, tus cambios se verán reflejados cuando te vuelvas a conectar",
+          icon: "info",
+        });
+      });
+  }
 };
 
 const logout = () => {
@@ -160,8 +181,8 @@ if (btnLogout) {
   btnLogout.addEventListener("click", logout);
 }
 
-const paginaComentarios = document.getElementById('paginaComentarios');
-paginaComentarios.addEventListener('onload', getAllComments());
+const paginaComentarios = document.getElementById("paginaComentarios");
+paginaComentarios.addEventListener("onload", getAllComments());
 
 const btnAddComent = document.getElementById("agregarComentario");
-btnAddComent.addEventListener('click', addComment);
+btnAddComent.addEventListener("click", addComment);
