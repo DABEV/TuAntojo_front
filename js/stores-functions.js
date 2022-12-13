@@ -33,19 +33,18 @@ const getAllStores = () => {
         card.classList.add("mb-2");
 
         card.innerHTML = `
-        <div class="row item mb-2">
+        <div class="row item mb-2 shadow bg-white rounded row-collapse">
             <div class="col-3  col-lg-1 item-icon d-flex justify-content-center pt-2 mb-2">
             <a href="http://localhost:8080/porfolio/comentarios.html">
               <img src="../images/puesto-de-comida.png" class="img-fluid px-2 py-2">
             </a>
             </div>
-            <div class="col d-flex align-items-center">
-            <div>
-                <div class="fw-bold">${element.name}</div>
-                <div>${element.ubication}</b>
-                </div>
-            </div>
-
+            <div class="col-7 d-flex align-items-center">
+              <div>
+                  <div class="fw-bold text-truncate">${element.name}</div>
+                  <div class="text-trencate">${element.ubication}</b>
+                  </div>
+              </div>
             </div>
             <div class="col-2 col-lg-1 d-flex align-items-center">
               <a href="http://localhost:8080/porfolio/productos.html">

@@ -11,6 +11,42 @@ body {
   font-size: 1.5rem;
 }
 
+.btn-floating-pink{
+  background: rgba(255,153,180, 1);
+    color: #fff;
+    -webkit-box-shadow: 0px 8px 20px -6px rgba(255,153,180, 1);
+    box-shadow: 0px 8px 20px -6px rgba(255,153,180, 1);
+    -webkit-transform: translate(0, -3px);
+    transform: translate(0, -3px);
+}
+
+.full-content {
+  height: 100vh;
+}
+
+.full-section {
+  height: 70vh;
+}
+
+.btn-floating-blue{
+  background: rgba(126, 215, 223, 1);
+  color: #fff;
+  -webkit-box-shadow: 0px 8px 20px -6px rgba(126, 215, 223, 1);
+  box-shadow: 0px 8px 20px -6px rgba(126, 215, 223, 1);
+}
+
+.shadow {
+  box-shadow: 0px 4px 15px 0px rgb(0 0 0 / 10%);
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.rounded {
+  border-radius: 20px;
+}
+
 .item:nth-child(4n + 1) .item-icon img {
   background-color: #f9de6b;
   border-radius: 5px;
@@ -63,4 +99,20 @@ body {
 
 .icon-space{
     width: 30px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.login {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+      url("/images/head.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }

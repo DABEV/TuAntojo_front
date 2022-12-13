@@ -31,22 +31,21 @@ const getOrdersPendings = () => {
           card.classList.add("item");
           card.classList.add("mb-2");
           card.innerHTML = `
-              <div class="row item mb-2">
-              <div class="col-3  col-lg-1 item-icon d-flex justify-content-center pt-2 mb-2">
+              <div class="row item mb-2 shadow bg-white rounded row-collapse">
+              <div class="col-3 col-lg-1 item-icon d-flex justify-content-center pt-2 mb-2">
                   <img src="../images/ticket.png" class="img-fluid px-2 py-2">
               </div>
-              <div class="col d-flex align-items-center">
+              <div class="col-7 d-flex align-items-center">
                   <div>
-                      <div class="fw-bold">${element.store.name}</div>
-                      <div class="">${element.store.ubication}</div>
+                      <div class="fw-bold text-truncate">${element.store.name}</div>
+                      <div class="text-truncate">${element.store.ubication}</div>
                       <div class="row">
-                          <div class="col text-end">
-                              <b class="badge-custom rounded-pill ta-c-danger">Pendiente</b>
-                          </div>
                           <div class="col">
-                              <span>$${element.payment}</span>
+                              <span class="text-truncate">$${element.payment}</span>
                           </div>
-
+                          <div class="col text-end text-truncate">
+                              <span class="badge-custom rounded-pill ta-c-danger">Pendiente</span>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -74,7 +73,7 @@ const getOrdersPendings = () => {
                   store_id: element.store_id,
                   user_id: element.user_id,
                 };
-                updateStatus(order,element.id);
+                updateStatus(order, element.id);
               } else {
               }
             });
@@ -85,7 +84,7 @@ const getOrdersPendings = () => {
     });
 };
 
-const updateStatus = (order,id) => {
+const updateStatus = (order, id) => {
   fetch(`${BASE_URL}/update/${id}`, {
     method: "PUT",
     headers: {
@@ -136,28 +135,24 @@ const getOrdersdelivered = () => {
           card.classList.add("item");
           card.classList.add("mb-2");
           card.innerHTML = `
-              <div class="row item mb-2">
+              <div class="row item mb-2 shadow bg-white rounded row-collapse">
               <div class="col-3  col-lg-1 item-icon d-flex justify-content-center pt-2 mb-2">
                   <img src="../images/ticket.png" class="img-fluid px-2 py-2">
               </div>
-              <div class="col d-flex align-items-center">
+              <div class="col-9 d-flex align-items-center">
                   <div>
-                      <div class="fw-bold">${element.store.name}</div>
-                      <div class="">${element.store.ubication}</div>
+                      <div class="fw-bold text-truncate">${element.store.name}</div>
+                      <div class="text-truncate">${element.store.ubication}</div>
                       <div class="row">
                           <div class="col text-end">
-                              <b class="badge-custom rounded-pill ta-c-success">Entregado</b>
+                              <b class="badge-custom rounded-pill ta-c-success text-truncate">Entregado</b>
                           </div>
-                          <div class="col">
+                          <div class="col text-truncate">
                               <span>$${element.payment}</span>
                           </div>
 
                       </div>
                   </div>
-              </div>
-             
-              <div class="col-2 col-lg-1 d-flex align-items-center"> 
-                  
               </div>
           </div>
           `;
