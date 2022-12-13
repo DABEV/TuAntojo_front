@@ -210,6 +210,10 @@ const addOrder = () => {
           title: "Información",
           text: "Tu pedido se ha guardado, tus cambios se reflejarán cuando vuelvas a conectarte a la red",
           icon: "info",
+        }).then(()=>{
+          window.location.replace(
+            "http://localhost:8080/porfolio/productos.html"
+          );
         });
       }
     })
