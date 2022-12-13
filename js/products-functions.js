@@ -1,35 +1,7 @@
 const BASE_URL = "https://tuantojoapi-production.up.railway.app/api/product";
 var producto = 0;
 var nombre = "";
-/*
-function setProductOrder(storeId, productId){
-  console.log(storeId+""+productId);
-  const productOrder = {
-    status: "pendiente",
-    amount: "",
-    store_id: storeId,
-    productId: productId
-  };
 
-  const cantidad = document.getElementById("cantidadProducto");
-  productOrder.amount = cantidad.value;
-
-  fetch(`${BASE_URL}/store`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(productOrder),
-  })
-  .then((response) => response.json())
-  .then((data) =>{
-    console.log(data);
-  })
-  .catch((e) => {
-    console.log(e);
-  });
-}
-*/
 function isNotAuth() {
   try{
       var token = localStorage.getItem("token");
@@ -59,14 +31,14 @@ const getAllProducts = () => {
         card.classList.add("mb-2");
 
         card.innerHTML = `
-        <div class="row item mb-2" data-bs-toggle="modal" data-bs-target="#productsModal">
+        <div class="row item mb-2 shadow bg-white rounded row-collapse">
             <div class="col-3  col-lg-1 item-icon d-flex justify-content-center pt-2 mb-2">
                 <img src="../images/candy3.png" class="img-fluid px-2 py-2">
             </div>
-            <div class="col d-flex align-items-center">
+            <div class="col-7 d-flex align-items-center">
                 <div>
-                    <div class="fw-bold">${element.name}</div>
-                    <div>Precio unitario: <b class="badge rounded-pill ta-bg-soft-blue-1">$${element.price} mx</b>
+                    <div class="fw-bold text-truncate">${element.name}</div>
+                    <div class="text-truncate">Precio unitario: <b class="badge rounded-pill ta-bg-soft-blue-1">$${element.price} mx</b>
                     </div>
                 </div>
             </div>
@@ -85,8 +57,3 @@ const getAllProducts = () => {
       });
     });
 };
-/*
-const btnAgregar = document.getElementById("agregarOrden");
-if(btnAgregar){
-  btnAgregar.addEventListener("click", setProductOrder(1,producto));
-}*/
