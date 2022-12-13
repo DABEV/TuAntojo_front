@@ -17,7 +17,7 @@ function isAlreadyAuth() {
   try {
     var token = localStorage.getItem("token");
     if (token != null) {
-      window.location.href = "http://localhost:8080/porfolio/listaPedido.html";
+      window.location.href = "https://dabev.github.io/TuAntojo_front/porfolio/listaPedido.html";
     } else {
     }
   } catch (e) {
@@ -57,7 +57,7 @@ const login = () => {
         localStorage.setItem("user", JSON.stringify(user.id));
         console.log("Registro de token");
         window.location.href =
-          "http://localhost:8080/porfolio/listaPedido.html";
+          "https://dabev.github.io/TuAntojo_front/porfolio/listaPedido.html";
       } else {
         console.log("No se inició sesión");
       }
@@ -117,7 +117,7 @@ const register = () => {
           icon: "success",
         });
         setTimeout(function () {
-          window.location.replace("http://localhost:8080/login.html");
+          window.location.replace("https://dabev.github.io/TuAntojo_front/login.html");
         }, 2000);
       })
       .catch((e) => {
