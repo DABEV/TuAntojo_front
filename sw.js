@@ -87,7 +87,7 @@ self.addEventListener("install", (event) => {
   event.waitUntil(Promise.all([promiseCache, promiseCacheInmutable]));
 });
 
-self.addEventListener("install", (event) => {
+self.addEventListener("activate", (event) => {
   console.log(INIT_MSG, "activated");
   const prom = caches.keys().then((cachesItems) => {
     cachesItems.forEach((element) => {
