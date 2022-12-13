@@ -29,6 +29,7 @@ self.addEventListener("install", (event) => {
       `${INIT_BASE}index.html`,
       `${INIT_BASE}login.html`,
       `${INIT_BASE}registro.html`,
+      `${INIT_BASE}manifest.json`,
       `${INIT_BASE}css/cards.css`,
       `${INIT_BASE}css/colors.css`,
       `${INIT_BASE}css/overideBootstarp.css`,
