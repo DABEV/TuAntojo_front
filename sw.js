@@ -80,7 +80,7 @@ self.addEventListener("install", (event) => {
         "https://unpkg.com/boxicons@2.1.4/fonts/boxicons.eot",
         "https://cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js",
         "https://unpkg.com/sweetalert/dist/sweetalert.min.js",
-        "https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2"
+        "https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2",
       ]);
     });
 
@@ -91,7 +91,7 @@ self.addEventListener("install", (event) => {
   console.log(INIT_MSG, "activated");
   const prom = caches.keys().then((cachesItems) => {
     cachesItems.forEach((element) => {
-      if (element !== STATI_CACHE_NAME && element.includes("static")) {
+      if (element != STATI_CACHE_NAME && element.includes("static")) {
         return caches.delete(element);
       }
     });
@@ -123,29 +123,47 @@ self.addEventListener("fetch", (event) => {
         }
       });
     event.respondWith(respuesta);
+  } else if (event.request.clone().method === "PUT") {
   } else {
-    const resp = caches.match(event.request).then((respCache) => {
-      if (respCache) {
-        return respCache;
-      }
-      return fetch(event.request).then((respWeb) => {
-        caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
-          cache.put(event.request, respWeb);
-          cleanCache(DYNAMIC_CACHE_NAME, 10);
+    const resp = fetch(event.request)
+      .then((respWeb) => {
+        if (!respWeb) {
+          return caches.match(event.request);
+        }
+        caches.open(DYNAMIC_CACHE_NAME).then((chacheDynamic) => {
+          chacheDynamic.put(event.request, respWeb);
+          cleanCache(DYNAMIC_CACHE_NAME, 30);
         });
         return respWeb.clone();
+      })
+      .catch(() => {
+        return caches.match(event.request);
       });
-    }).catch((err)=>{
-      if(event.request.headers.get('accept').includes('image/png')){
-        return caches.match('images/icons/store.png');
-      }
-      if(event.request.headers.get('accept').includes('image/jpg')){
-        return caches.match('images/icons/store.png');
-      }
-      if(event.request.headers.get('accept').includes('image/webp')){
-        return caches.match('images/icons/store.png');
-      }
-    });
+    /*const resp = caches
+      .match(event.request)
+      .then((respCache) => {
+        if (respCache) {
+          return respCache;
+        }
+        return fetch(event.request).then((respWeb) => {
+          caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
+            cache.put(event.request, respWeb);
+            cleanCache(DYNAMIC_CACHE_NAME, 20);
+          });
+          return respWeb.clone();
+        });
+      })
+      .catch((err) => {
+        if (event.request.headers.get("accept").includes("image/png")) {
+          return caches.match("images/icons/store.png");
+        }
+        if (event.request.headers.get("accept").includes("image/jpg")) {
+          return caches.match("images/icons/store.png");
+        }
+        if (event.request.headers.get("accept").includes("image/webp")) {
+          return caches.match("images/icons/store.png");
+        }
+      });*/
     event.respondWith(resp);
   }
   /*
@@ -175,9 +193,9 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(resp);*/
 });
 
-self.addEventListener('sync', (event) => {
+self.addEventListener("sync", (event) => {
   console.log("sw:sync");
-  if (event.tag === 'new-order') {
+  if (event.tag === "new-order") {
     const resPromSync = sendPostOrders();
     event.waitUntil(resPromSync);
   }
