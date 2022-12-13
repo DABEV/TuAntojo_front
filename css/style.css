@@ -111,7 +111,7 @@ body {
 
 .login {
   background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
-      url("/images/head.png");
+      url("../images/head.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
