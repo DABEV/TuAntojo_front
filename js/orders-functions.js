@@ -39,6 +39,7 @@ const getOrdersPendings = () => {
               <div class="col-7 d-flex align-items-center">
                   <div>
                       <div class="fw-bold text-truncate">${element.store.name}</div>
+                      <div class="text-truncate">${element.product.name}</div>
                       <div class="text-truncate">${element.store.ubication}</div>
                       <div class="row">
                           <div class="col">
@@ -143,6 +144,7 @@ const getOrdersdelivered = () => {
               <div class="col-9 d-flex align-items-center">
                   <div>
                       <div class="fw-bold text-truncate">${element.store.name}</div>
+                      <div class="text-truncate">${element.product.name}</div>
                       <div class="text-truncate">${element.store.ubication}</div>
                       <div class="row">
                           <div class="col text-end">
