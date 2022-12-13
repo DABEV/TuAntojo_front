@@ -198,7 +198,7 @@ const addOrder = () => {
       const order = data.data;
       if (order) {
         swal({
-          title: "se registro tu orden",
+          title: "Se registró tu orden",
         });
         setTimeout(function () {
           window.location.replace(
@@ -207,9 +207,9 @@ const addOrder = () => {
         }, 2000);
       } else {
         swal({
-          title: "no se registro",
-          text: "You clicked the button!",
-          icon: "error",
+          title: "Información",
+          text: "Tu pedido se ha guardado, tus cambios se reflejarán cuando vuelvas a conectarte a la red",
+          icon: "info",
         });
       }
     })
@@ -219,6 +219,7 @@ const addOrder = () => {
 };
 
 const getOneProduct = () => {
+  isNotAuth();
   const producto = localStorage.getItem("product_id");
   fetch(`http://localhost:8000/api/product/show/${producto}`)
     .then((response) => response.json())

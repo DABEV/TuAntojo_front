@@ -66,7 +66,7 @@ const getAllProducts = () => {
             <div class="col d-flex align-items-center">
                 <div>
                     <div class="fw-bold">${element.name}</div>
-                    <div>Stock actual: <b class="badge rounded-pill ta-bg-soft-blue-1">12</b>
+                    <div>Precio unitario: <b class="badge rounded-pill ta-bg-soft-blue-1">$${element.price} mx</b>
                     </div>
                 </div>
             </div>
