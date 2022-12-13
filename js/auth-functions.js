@@ -2,27 +2,26 @@ const BASE_URL = "http://localhost:8000/api";
 const localStorage = window.localStorage;
 
 function isNotAuth() {
-  try{
-      var token = localStorage.getItem("token");
-      if(token != null){
-      }else{
-        window.location.href = "http://localhost:8080/login.html"
-      }
-  }catch(e){
-      console.log(e);
+  try {
+    var token = localStorage.getItem("token");
+    if (token != null) {
+    } else {
+      window.location.href = "login.html";
+    }
+  } catch (e) {
+    console.log(e);
   }
 }
 
 function isAlreadyAuth() {
-  try{
-      var token = localStorage.getItem("token");
-      if(token != null){
-        window.location.href =
-          "http://localhost:8080/porfolio/listaPedido.html";
-      }else{
-      }
-  }catch(e){
-      console.log(e);
+  try {
+    var token = localStorage.getItem("token");
+    if (token != null) {
+      window.location.href = "http://localhost:8080/porfolio/listaPedido.html";
+    } else {
+    }
+  } catch (e) {
+    console.log(e);
   }
 }
 
@@ -55,7 +54,7 @@ const login = () => {
       if (token) {
         localStorage.clear();
         localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user.id))
+        localStorage.setItem("user", JSON.stringify(user.id));
         console.log("Registro de token");
         window.location.href =
           "http://localhost:8080/porfolio/listaPedido.html";
@@ -88,28 +87,43 @@ const register = () => {
   const passwordConfirmation = document.getElementById("passwordConfirm");
   user.password_confirmation = passwordConfirmation.value;
 
-  fetch(`${BASE_URL}/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      if (data) {
+  if (nameUser.value == "" || emailUser.value == "" || passwordUser.value == "") {
+    swal({
+      title: "Error",
+      text: "Hay campos vacíos",
+      icon: "error",
+    });
+  } else if (passwordUser.value != passwordConfirmation.value) {
+    swal({
+      title: "Advertencia",
+      text: "Favor de confirmar la contraseña",
+      icon: "warning",
+    });
+  } else {
+    fetch(`${BASE_URL}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((data) => {
         localStorage.clear();
         console.log("Usuario creado");
-        window.location.href =
-          "http://localhost:8080/login.html";
-      } else {
-        console.log("Registro de usuario fallido");
-      }
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+        swal({
+          title: "Éxito",
+          text: "Usuario nuevo creado",
+          icon: "success",
+        });
+        setTimeout(function () {
+          window.location.replace("http://localhost:8080/login.html");
+        }, 2000);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 };
 
 const logout = () => {
@@ -117,33 +131,31 @@ const logout = () => {
   fetch(`${BASE_URL}/logout`, {
     method: "GET",
     headers: {
-      "Authorization": "Bearer " + token
-    }
+      Authorization: "Bearer " + token,
+    },
   })
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-    if(data){
-      localStorage.clear();
-    }else{
-      console.log("Cierre de sesión fallido");
-    }
-  })
-}
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data) {
+        localStorage.clear();
+      } else {
+        console.log("Cierre de sesión fallido");
+      }
+    });
+};
 
 const btnLogin = document.getElementById("btnLogin");
-if(btnLogin){
+if (btnLogin) {
   btnLogin.addEventListener("click", login);
 }
 
-
 const btnRegister = document.getElementById("btnRegister");
-if(btnRegister){
+if (btnRegister) {
   btnRegister.addEventListener("click", register);
 }
 
 const btnLogout = document.getElementById("btnLogout");
-if(btnLogout){
+if (btnLogout) {
   btnLogout.addEventListener("click", logout);
 }
-

@@ -1,3 +1,6 @@
+importScripts("https://cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js");
+importScripts("/js/sw-db.js");
+
 const INIT_MSG = "SW:";
 const INIT_BASE = "/";
 
@@ -60,6 +63,7 @@ self.addEventListener("install", (event) => {
       `${INIT_BASE}js/comments-functions.js`,
       `${INIT_BASE}js/firestore/Firestore.js`,
       `${INIT_BASE}js/firestore/Firestore-functions.js`,
+      `${INIT_BASE}js/sw-db.js`,
     ]);
   });
 
@@ -74,6 +78,9 @@ self.addEventListener("install", (event) => {
         "https://unpkg.com/boxicons@2.1.4/fonts/boxicons.woff2",
         "https://unpkg.com/boxicons@2.1.4/fonts/boxicons.woff",
         "https://unpkg.com/boxicons@2.1.4/fonts/boxicons.eot",
+        "https://cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js",
+        "https://unpkg.com/sweetalert/dist/sweetalert.min.js",
+        "https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2"
       ]);
     });
 
@@ -94,6 +101,53 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  console.log(event.request.clone().method);
+  if (event.request.clone().method === "POST") {
+    const respuesta = fetch(event.request.clone())
+      .then((respWeb) => {
+        return respWeb;
+      })
+      .catch(() => {
+        if (self.registration.sync) {
+          return event.request.json().then((body) => {
+            if (body.payment != null) {
+              const respOffline = saveOrder(body);
+              return respOffline;
+            } else {
+              return null;
+            }
+          });
+        } else {
+          //crear response que no tiene sync
+          return null;
+        }
+      });
+    event.respondWith(respuesta);
+  } else {
+    const resp = caches.match(event.request).then((respCache) => {
+      if (respCache) {
+        return respCache;
+      }
+      return fetch(event.request).then((respWeb) => {
+        caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
+          cache.put(event.request, respWeb);
+          cleanCache(DYNAMIC_CACHE_NAME, 10);
+        });
+        return respWeb.clone();
+      });
+    }).catch((err)=>{
+      if(event.request.headers.get('accept').includes('image/png')){
+        return caches.match('images/icons/store.png');
+      }
+      if(event.request.headers.get('accept').includes('image/jpg')){
+        return caches.match('images/icons/store.png');
+      }
+      if(event.request.headers.get('accept').includes('image/webp')){
+        return caches.match('images/icons/store.png');
+      }
+    });
+    event.respondWith(resp);
+  }
   /*
   
   const resp = caches.match(event.request).then((respCache) => {
@@ -119,4 +173,12 @@ self.addEventListener("fetch", (event) => {
     }
   });
   event.respondWith(resp);*/
+});
+
+self.addEventListener('sync', (event) => {
+  console.log("sw:sync");
+  if (event.tag === 'new-order') {
+    const resPromSync = sendPostOrders();
+    event.waitUntil(resPromSync);
+  }
 });
