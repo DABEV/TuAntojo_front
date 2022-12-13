@@ -1,88 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>TuAntojo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="./css/loginRegistroStyle.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="css/colors.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="css/overideBootstarp.css"
-    />
-  </head>
 
-  <body class="fondo" onload="isAlreadyAuth()">
-    <img class="header" src="./images/headR.png" />
-    <h3 class="title mb-5">Registrar</h3>
-    <div class="row mx-5">
-      <input
-        class="form-control mb-4"
-        type="text"
-        id="name"
-        placeholder="Nombre"
-      />
-      <input
-        class="form-control mb-4"
-        type="email"
-        id="email"
-        placeholder="Correo Electronico"
-      />
-      <input
-        class="form-control mb-4"
-        type="password"
-        id="password"
-        placeholder="Contraseña"
-      />
-      <input
-        class="form-control mb-5"
-        type="password"
-        id="passwordConfirm"
-        placeholder="Confirmar contraseña"
-      />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>TuAntojo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/colors.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/overideBootstarp.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+</head>
+
+<body onload="isAlreadyAuth()" class="login full-content center">
+  <div class="row justify-content-center mx-4">
+    <div class="col-12"></div>
+    <div class="col-12 shadow bg-white rounded mt-3">
+      <h2 class="mb-3 text-center ta-c-teal-1 mt-4">Registrar</h2>
+      <input class="form-control mb-4" type="text" id="name" placeholder="Nombre" />
+      <input class="form-control mb-4" type="email" id="email" placeholder="Correo Electronico" />
+      <input class="form-control mb-4" type="password" id="password" placeholder="Contraseña" />
+      <input class="form-control mb-5" type="password" id="passwordConfirm" placeholder="Confirmar contraseña" />
+      <div class="d-grid gap-2 my-3">
+        <button class="btn btn-transparent btn-floating-pink" id="btnRegister" type="button">
+          Registrar
+        </button>
+      </div>
+      <div class="text-center">
+        <a href="login.html" class="ta-c-teal-1 text-center">Inicia sesión</a>
+      </div>
+      <br>
     </div>
-    <div class="row mx-5 mt-5 mb-4">
-      <button
-        class="btn btn-transparent text-white ta-bg-pink-1"
-        id="btnRegister"
-        type="button"
-      >
-        Registrar
-      </button>
-    </div>
-    <div class="row mx-5">
-      <a href="login.html" class="ta-c-teal-1 text-center">Inicia sesión</a>
-    </div>
-    <footer>
-      <img class="footer" src="./images/footer.png" />
-    </footer>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="js/auth-functions.js"></script>
-    <script src="js/app.js"></script>
-  </body>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="js/auth-functions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
 </html>
