@@ -1,6 +1,6 @@
 import { saveImageFirestore } from "./firestore/Firestore-functions.js";
 
-const BASE_URL = "http://localhost:8000/api/comment";
+const BASE_URL = "https://tuantojoapi-production.up.railway.app/api/comment";
 const ta_data_static_store_1 = "";
 
 function isNotAuth() {
@@ -158,7 +158,7 @@ const addComment = async () => {
 
 const logout = () => {
   const token = localStorage.getItem("token");
-  fetch(`http://localhost:8000/api/logout`, {
+  fetch(`https://tuantojoapi-production.up.railway.app/api/logout`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + token,
