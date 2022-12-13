@@ -6,7 +6,7 @@ function isNotAuth() {
     var token = localStorage.getItem("token");
     if (token != null) {
     } else {
-      window.location.href = "http://localhost:8080/login.html";
+      window.location.href = "https://dabev.github.io/TuAntojo_front/login.html";
       window.localStorage.clear();
     }
   } catch (e) {
@@ -200,7 +200,7 @@ const addOrder = () => {
         });
         setTimeout(function () {
           window.location.replace(
-            "http://localhost:8080/porfolio/listapedido.html"
+            "https://dabev.github.io/TuAntojo_front/porfolio/listapedido.html"
           );
         }, 2000);
       } else {
@@ -210,7 +210,7 @@ const addOrder = () => {
           icon: "info",
         }).then(()=>{
           window.location.replace(
-            "http://localhost:8080/porfolio/productos.html"
+            "https://dabev.github.io/TuAntojo_front/porfolio/productos.html"
           );
         });
       }

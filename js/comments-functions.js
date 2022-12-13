@@ -8,7 +8,7 @@ function isNotAuth() {
     var token = localStorage.getItem("token");
     if (token != null) {
     } else {
-      window.location.href = "http://localhost:8080/login.html";
+      window.location.href = "https://dabev.github.io/TuAntojo_front/login.html";
       window.localStorage.clear();
     }
   } catch (e) {
