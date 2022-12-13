@@ -1,4 +1,4 @@
-const apiSw = 'http://localhost:8000/api/order/store'
+const apiSw = 'https://tuantojoapi-production.up.railway.app/api/order/store'
 const db = new PouchDB('orders');
 
 function saveOrder(order){

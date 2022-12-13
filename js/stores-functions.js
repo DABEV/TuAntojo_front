@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8000/api/store";
+const BASE_URL = "https://tuantojoapi-production.up.railway.app/api/store";
 var tienda = 0;
 var nombre = "";
 
@@ -68,7 +68,7 @@ const getAllStores = () => {
 
 const logout = () => {
   const token = localStorage.getItem("token");
-  fetch(`http://localhost:8000/api/logout`, {
+  fetch(`https://tuantojoapi-production.up.railway.app/api/logout`, {
     method: "GET",
     headers: {
       "Authorization": "Bearer " + token

@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:8000/api/order";
+const BASE_URL = "https://tuantojoapi-production.up.railway.app/api/order";
+const BASE_URL_PRODUCT="https://tuantojoapi-production.up.railway.app/api/product"
 var precioProducto = 0;
 function isNotAuth() {
   try {
@@ -225,7 +226,7 @@ const addOrder = () => {
 const getOneProduct = () => {
   isNotAuth();
   const producto = localStorage.getItem("product_id");
-  fetch(`http://localhost:8000/api/product/show/${producto}`)
+  fetch(`${BASE_URL_PRODUCT}/show/${producto}`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -240,7 +241,7 @@ const getOneProduct = () => {
 
 const logout = () => {
   const token = localStorage.getItem("token");
-  fetch(`http://localhost:8000/api/logout`, {
+  fetch(`https://tuantojoapi-production.up.railway.app/api/logout`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + token,

@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8000/api";
+const BASE_URL = "https://tuantojoapi-production.up.railway.app/api";
 const localStorage = window.localStorage;
 
 function isNotAuth() {
