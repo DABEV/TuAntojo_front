@@ -6,7 +6,7 @@ function isNotAuth() {
     var token = localStorage.getItem("token");
     if (token != null) {
     } else {
-      window.location.href = "https://dabev.github.io/TuAntojo_front/login.html";
+      window.location.href = "http://localhost:8080/login.html";
       window.localStorage.clear();
     }
   } catch (e) {
@@ -40,13 +40,15 @@ const getOrdersPendings = () => {
                   <div>
                       <div class="fw-bold text-truncate">${element.store.name}</div>
                       <div class="text-truncate">${element.product.name}</div>
-                      <div class="text-truncate">${element.store.ubication}</div>
+                      <div class="text-truncate">
+                        <span>${element.store.ubication}</span>
+                      </div>
                       <div class="row">
                           <div class="col">
                               <span class="text-truncate">$${element.payment}</span>
                           </div>
                           <div class="col text-end text-truncate">
-                              <span class="badge-custom rounded-pill ta-c-danger">Pendiente</span>
+                            <span class="badge-custom rounded-pill ta-c-danger">Pendiente</span>
                           </div>
                       </div>
                   </div>
@@ -200,7 +202,7 @@ const addOrder = () => {
         });
         setTimeout(function () {
           window.location.replace(
-            "https://dabev.github.io/TuAntojo_front/porfolio/listapedido.html"
+            "http://localhost:8080/porfolio/listapedido.html"
           );
         }, 2000);
       } else {
@@ -210,7 +212,7 @@ const addOrder = () => {
           icon: "info",
         }).then(()=>{
           window.location.replace(
-            "https://dabev.github.io/TuAntojo_front/porfolio/productos.html"
+            "http://localhost:8080/porfolio/productos.html"
           );
         });
       }

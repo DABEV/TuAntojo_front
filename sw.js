@@ -2,7 +2,7 @@ importScripts("https://cdn.jsdelivr.net/npm/pouchdb@7.3.1/dist/pouchdb.min.js");
 importScripts("/js/sw-db.js");
 
 const INIT_MSG = "SW:";
-const INIT_BASE = "https://dabev.github.io/TuAntojo_front/";
+const INIT_BASE = "/";
 
 const STATI_CACHE_NAME = "static-cache-v1.1";
 const INMUTABLE_CACHE_NAME = "inmutable-cache-v1.1";
@@ -25,7 +25,6 @@ self.addEventListener("install", (event) => {
 
   const promiseCache = caches.open(STATI_CACHE_NAME).then((cache) => {
     return cache.addAll([
-      `/`,
       `${INIT_BASE}`,
       `${INIT_BASE}index.html`,
       `${INIT_BASE}login.html`,

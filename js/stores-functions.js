@@ -7,7 +7,7 @@ function isNotAuth() {
       var token = localStorage.getItem("token");
       if(token != null){
       }else{
-        window.location.href = "https://dabev.github.io/TuAntojo_front/login.html";
+        window.location.href = "http://localhost:8080/login.html";
         window.localStorage.clear();
       }
   }catch(e){
@@ -35,7 +35,7 @@ const getAllStores = () => {
         card.innerHTML = `
         <div class="row item mb-2 shadow bg-white rounded row-collapse">
             <div class="col-3  col-lg-1 item-icon d-flex justify-content-center pt-2 mb-2">
-            <a href="https://dabev.github.io/TuAntojo_front/porfolio/comentarios.html">
+            <a href="http://localhost:8080/porfolio/comentarios.html">
               <img src="../images/puesto-de-comida.png" class="img-fluid px-2 py-2">
             </a>
             </div>
@@ -47,7 +47,7 @@ const getAllStores = () => {
               </div>
             </div>
             <div class="col-2 col-lg-1 d-flex align-items-center">
-              <a href="https://dabev.github.io/TuAntojo_front/porfolio/productos.html">
+              <a href="http://localhost:8080/porfolio/productos.html">
               <i class='bx bx-cart ta-c-teal-1 fs-1'></i>
               </a>  
             </div>
@@ -58,7 +58,7 @@ const getAllStores = () => {
         card.addEventListener("click", () => {
           console.log(element.id);
           localStorage.setItem("store_id", element.id);
-          window.location.href = "https://dabev.github.io/TuAntojo_front/porfolio/comentarios.html";
+          window.location.href = "http://localhost:8080/porfolio/comentarios.html";
         });
         itemList.appendChild(card);
       });

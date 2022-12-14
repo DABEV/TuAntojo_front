@@ -7,7 +7,7 @@ function isNotAuth() {
       var token = localStorage.getItem("token");
       if(token != null){
       }else{
-        window.location.href = "https://dabev.github.io/TuAntojo_front/login.html";
+        window.location.href = "http://localhost:8080/login.html";
         window.localStorage.clear();
       }
   }catch(e){
@@ -43,7 +43,7 @@ const getAllProducts = () => {
                 </div>
             </div>
             <div class="col-2 col-lg-1 d-flex align-items-center">
-                <a href="https://dabev.github.io/TuAntojo_front/porfolio/nuevoPedido.html"  class="btn btn-icon">
+                <a href="http://localhost:8080/porfolio/nuevoPedido.html"  class="btn btn-icon">
                     <i class='bx bx-cart-add ta-c-pink-1 fs-1'></i>
                 </a>
             </div>
